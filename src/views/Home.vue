@@ -1,18 +1,19 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+   <presentation v-if="!hasData"/>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import Presentation from '@/components/Presentation.vue';
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld,
+    Presentation,
+  },
+  data() {
+    return {
+      hasData: false,
+    };
   },
 };
 </script>
