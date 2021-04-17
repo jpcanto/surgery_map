@@ -45,7 +45,7 @@ export default {
     showPassword: false,
     usernameRules: {
       required: (value) => !!value || 'Obrigatório',
-      minLength: (value) => (value && value.length >= 8) || 'Mínimo de 8 caracteres',
+      minLength: (value) => (value && value.length >= 5) || 'Mínimo de 5 caracteres',
     },
     passwordRules: {
       required: (value) => !!value || 'Obrigatório',
