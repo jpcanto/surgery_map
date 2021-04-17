@@ -1,0 +1,13 @@
+{
+  "appId": "br.com.jopetecnologia.surgerymap",
+  "appName": "SurgeryMap",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}
