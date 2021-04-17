@@ -52,13 +52,15 @@ export default {
       minLenght: (value) => value.length >= 8 || 'Mínimo de 8 caracteres',
     },
   }),
-  methods: {
-    togglePasswordShow() {
-      this.showPassword = !this.showPassword;
-    },
+  computed: {
     isPasswordVisible() {
       const isVisible = this.showPassword ? 'text' : 'password';
       return isVisible;
+    },
+  },
+  methods: {
+    togglePasswordShow() {
+      this.showPassword = !this.showPassword;
     },
     handleLogin() {
       this.$router.replace('/home');
