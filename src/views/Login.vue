@@ -79,6 +79,7 @@ export default {
   computed: {
     ...mapState({
       user: (state) => state.user.info,
+      error: (state) => state.user.error,
     }),
     isSignInSignUpDisabled() {
       if (this.validForm) { return true; }
@@ -102,8 +103,13 @@ export default {
   },
   watch: {
     user(value) {
-      if (value !== null && value !== '') {
+      if (value.length) {
         this.$router.replace('/home');
+      }
+    },
+    error(value) {
+      if (value) {
+        alert('Houve um erro ao tentar logar, verifique o usuário e senha, e a conexão com a internet');
       }
     },
   },
