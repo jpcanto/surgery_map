@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "start": "vue-cli-service serve",
+    "start:hml": "vue-cli-service serve --mode hml",
     "build": "vue-cli-service build",
+    "build:hml": "vue-cli-service build --mode hml",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -12,6 +14,7 @@
     "@capacitor/cli": "^2.4.7",
     "@capacitor/core": "^2.4.7",
     "core-js": "^3.6.5",
+    "firebase": "^8.4.1",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuetify": "^2.4.0",

@@ -11,9 +11,9 @@
     </v-img>
 
     <v-card-text class="white--text">
-      <div>Bem vindo</div>
+      <div>Bem vindo {{ userName }}</div>
 
-      <div>Estamos preparando tudo para você</div>
+      <div>Estamos preparando tudo para você, por favor aguarde.</div>
     </v-card-text>
   </v-card>
   <v-progress-circular
@@ -24,8 +24,15 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'Presentation',
+  computed: {
+    ...mapState({
+      userName: (state) => state.user.info.name,
+    }),
+  },
 };
 </script>
 
