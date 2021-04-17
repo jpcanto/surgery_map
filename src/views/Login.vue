@@ -12,9 +12,9 @@
         <v-card-text>
           <v-text-field
             :label="credentialLabel"
-            v-model="email"
+            v-model="credential"
             color="secondary"
-            name="userEmail"
+            name="userCredential"
             type="text">
           </v-text-field>
           <v-text-field
@@ -55,7 +55,8 @@
 </template>
 
 <script>
-import firebase from 'firebase';
+import storeUser from '@/services/login';
+import { mapState } from 'vuex';
 
 export default {
   name: 'login',
@@ -63,7 +64,7 @@ export default {
     validForm: false,
     isSignIn: true,
     showPassword: false,
-    email: '',
+    credential: '',
     userName: '',
     password: '',
     usernameRules: {
@@ -76,6 +77,9 @@ export default {
     },
   }),
   computed: {
+    ...mapState({
+      user: (state) => state.user.info,
+    }),
     isSignInSignUpDisabled() {
       if (this.validForm) { return true; }
       return false;
@@ -96,6 +100,13 @@ export default {
       return this.isSignIn ? 'Email ou User name*' : 'Email *';
     },
   },
+  watch: {
+    user(value) {
+      if (value !== null && value !== '') {
+        this.$router.replace('/home');
+      }
+    },
+  },
   methods: {
     togglePasswordShow() {
       this.showPassword = !this.showPassword;
@@ -110,20 +121,13 @@ export default {
       this.isSignIn = !this.isSignIn;
     },
     signIn() {
-      alert(`Olá ${this.email}, Estamos redirecionando você. Por favor aguarde`);
-      this.$store.dispatch('DISPATCH_USER', { name: this.email });
-      this.$router.replace('/home');
+      this.$store.dispatch('DISPATCH_USER', { name: this.credential, pass: this.password });
     },
-    signUp() {
-      firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
-        (user) => {
-          alert(`Usuário ${user}, cadastrado com sucesso!`);
-          this.isSignIn = true;
-        },
-        (error) => {
-          alert(`Aconteceu algo inesperado. ${error.message}`);
-        },
-      );
+    async signUp() {
+      const stored = await storeUser(this.credential, this.password);
+      return stored
+        ? alert('Usuário cadastrado com sucesso!')
+        : alert('Ocorreu um erro inesperado');
     },
   },
 };

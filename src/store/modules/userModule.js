@@ -1,3 +1,5 @@
+import firebase from 'firebase';
+
 export default {
   state: {
     info: [],
@@ -5,9 +7,16 @@ export default {
     error: false,
   },
   actions: {
-    DISPATCH_USER: ({ commit }, payload) => {
+    DISPATCH_USER: async ({ commit }, { name, pass }) => {
       commit('SET_USER_LOADING');
-      commit('SET_USER', payload);
+      firebase.auth().signInWithEmailAndPassword(name, pass).then(
+        (data) => {
+          commit('SET_USER', data.user.email);
+        },
+        () => {
+          commit('SET_USER_ERROR');
+        },
+      );
     },
   },
   mutations: {
