@@ -96,6 +96,10 @@ export default {
 @import "@/styles/variables.scss";
 
 .v-card {
+  @media screen and(max-width: 350px) {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
   ::v-deep .v-image {
     border-radius: 5px;
     &.male {

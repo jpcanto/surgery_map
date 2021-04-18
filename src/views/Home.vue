@@ -2,6 +2,7 @@
   <v-main>
     <Presentation v-if="!hasData"/>
     <template v-else>
+      <SearchPatient />
       <FilterPatients />
       <PatientCard v-for="patient in patients" :key="patient.id" :patient="patient"/>
     </template>
@@ -11,12 +12,14 @@
 <script>
 import Presentation from '@/components/Presentation.vue';
 import PatientCard from '@/components/Patients/PatientCard.vue';
-import FilterPatients from '../components/Patients/FilterPatients.vue';
+import FilterPatients from '@/components/Patients/FilterPatients.vue';
+import SearchPatient from '@/components/Patients/SearchPatient.vue';
 
 export default {
   name: 'Home',
   components: {
     Presentation,
+    SearchPatient,
     FilterPatients,
     PatientCard,
   },

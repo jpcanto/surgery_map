@@ -56,7 +56,7 @@ export default {
   flex-direction: column;
 
   .v-btn {
-  border-radius: 10px !important;
+  border-radius: 15px !important;
     &.v-btn--active {
       background-color: $secondary !important;
       color: $primary !important;
