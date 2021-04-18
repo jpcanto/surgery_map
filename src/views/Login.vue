@@ -103,7 +103,7 @@ export default {
   },
   watch: {
     user(value) {
-      const hasUser = value.length;
+      const hasUser = value.name;
       if (hasUser) {
         this.$router.replace('/home');
       }

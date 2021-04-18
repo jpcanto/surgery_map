@@ -12,7 +12,7 @@ export default {
       commit('SET_USER_ERROR', false);
       firebase.auth().signInWithEmailAndPassword(name, pass).then(
         (data) => {
-          commit('SET_USER', data.user.email);
+          commit('SET_USER', { name: data.user.email });
         },
         () => {
           commit('SET_USER_ERROR', true);
