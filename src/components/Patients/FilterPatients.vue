@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn-toggle group v-model="btnToggle" multiple class="mt-8">
+    <v-btn-toggle group v-model="btnToggle" class="mt-8">
       <div class="btn-box">
         <v-btn icon x-large elevation="5" class="mb-0 mt-0">
           <v-icon size="28">{{ creditCardIcon }}</v-icon>
@@ -34,11 +34,16 @@ export default {
   name: 'FilterPatients',
   data() {
     return {
-      btnToggle: [],
+      btnToggle: null,
       creditCardIcon: mdiCalendarRange,
       alphabetIcon: mdiOrderAlphabeticalAscending,
       paymentIcon: mdiCurrencyUsd,
     };
+  },
+  watch: {
+    btnToggle(value) {
+      this.$store.dispatch('DISPATCH_USER_FILTER_PARAM', value);
+    },
   },
 };
 </script>

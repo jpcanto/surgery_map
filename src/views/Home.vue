@@ -14,6 +14,7 @@ import Presentation from '@/components/Presentation.vue';
 import PatientCard from '@/components/Patients/PatientCard.vue';
 import FilterPatients from '@/components/Patients/FilterPatients.vue';
 import SearchPatient from '@/components/Patients/SearchPatient.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Home',
@@ -26,18 +27,12 @@ export default {
   data() {
     return {
       hasData: true,
-      patients: [
-        {
-          name: 'Joao Pedro', id: 1, surgery: 'Bariatrica', date: '12/05/2020', gender: 'male', paid: false,
-        },
-        {
-          name: 'Dilson Canto', id: 2, surgery: 'PNEUMOTORAX ABERTO com a equipe da sol, no hospital norte cor', date: '12/08/2020', gender: 'male', paid: true,
-        },
-        {
-          name: 'Solange Canto', id: 3, surgery: 'Valvuloplastia', date: '12/02/2021', gender: 'female', paid: false,
-        },
-      ],
     };
+  },
+  computed: {
+    ...mapGetters({
+      patients: 'GET_FILTERED_USERS',
+    }),
   },
 };
 </script>
