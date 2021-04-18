@@ -30,7 +30,7 @@ export default {
   name: 'Presentation',
   computed: {
     ...mapState({
-      userName: (state) => state.user.info.name,
+      userName: (state) => state.users.info.name,
     }),
   },
 };

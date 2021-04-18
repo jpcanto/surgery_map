@@ -42,7 +42,7 @@ export default {
   },
   watch: {
     btnToggle(value) {
-      this.$store.dispatch('DISPATCH_USER_FILTER_PARAM', value);
+      this.$store.dispatch('DISPATCH_PATIENT_FILTER_PARAM', value);
     },
   },
 };

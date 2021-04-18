@@ -21,6 +21,11 @@ export default {
       search: '',
     };
   },
+  watch: {
+    search(value) {
+      this.$store.dispatch('DISPATCH_PATIENT_SEARCH_PARAM', value);
+    },
+  },
 };
 </script>
 
