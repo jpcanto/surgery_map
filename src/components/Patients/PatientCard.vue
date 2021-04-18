@@ -31,11 +31,11 @@
       <v-card-actions bottom class="pa-0">
         <v-spacer></v-spacer>
 
-        <v-btn-toggle v-show="activeButtons" rounded group>
-          <v-btn icon small>
+        <v-btn-toggle v-show="activeButtons" group>
+          <v-btn icon small class="mb-0 mt-0">
             <v-icon small>mdi-credit-card</v-icon>
           </v-btn>
-          <v-btn icon small>
+          <v-btn icon small class="mb-0 mt-0">
             <v-icon small>mdi-pencil</v-icon>
           </v-btn>
         </v-btn-toggle>
