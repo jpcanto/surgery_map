@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <v-main :class="mainBackgroundColor">
+      <Navbar />
       <router-view></router-view>
       <Snackbar />
     </v-main>
@@ -8,11 +9,13 @@
 </template>
 
 <script>
+import Navbar from './components/Navbar.vue';
 import Snackbar from './components/Snackbar.vue';
 
 export default {
   name: 'App',
   components: {
+    Navbar,
     Snackbar,
   },
   computed: {
