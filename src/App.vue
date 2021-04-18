@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-main class="secondary">
+    <v-main :class="mainBackgroundColor">
       <router-view></router-view>
       <Snackbar />
     </v-main>
@@ -14,6 +14,17 @@ export default {
   name: 'App',
   components: {
     Snackbar,
+  },
+  computed: {
+    mainBackgroundColor() {
+      const route = this.$route.name;
+      switch (route) {
+        case 'login':
+          return 'secondary';
+        default:
+          return 'primary';
+      }
+    },
   },
 };
 </script>
