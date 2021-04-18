@@ -1,6 +1,6 @@
 <template>
   <v-card
-    class="ma-8 d-flex flex-column align-center justify-center"
+    class="ma-8 d-flex flex-column align-center"
     color="transparent"
     elevation="0"
   >
@@ -11,9 +11,9 @@
       contain
     ></v-img>
 
-        <v-card-title class="pt-2 pb-3"> {{ feedbackTitle }} </v-card-title>
+        <v-card-title class="pt-5 pb-8"> {{ feedbackTitle }} </v-card-title>
 
-        <v-card-subtitle class="pb-0">
+        <v-card-subtitle class="pb-4">
           {{ feedbackDescription }}
         </v-card-subtitle>
 
