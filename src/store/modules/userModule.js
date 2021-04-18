@@ -9,12 +9,13 @@ export default {
   actions: {
     DISPATCH_USER: async ({ commit }, { name, pass }) => {
       commit('SET_USER_LOADING');
+      commit('SET_USER_ERROR', false);
       firebase.auth().signInWithEmailAndPassword(name, pass).then(
         (data) => {
           commit('SET_USER', data.user.email);
         },
         () => {
-          commit('SET_USER_ERROR');
+          commit('SET_USER_ERROR', true);
         },
       );
     },
@@ -25,10 +26,10 @@ export default {
       state.isLoading = false;
       state.error = false;
     },
-    SET_USER_ERROR: (state) => {
+    SET_USER_ERROR: (state, payload) => {
       state.info = [];
       state.isLoading = false;
-      state.error = true;
+      state.error = payload;
     },
     SET_USER_LOADING: (state) => {
       state.isLoading = true;

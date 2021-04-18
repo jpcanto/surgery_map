@@ -103,13 +103,18 @@ export default {
   },
   watch: {
     user(value) {
-      if (value.length) {
+      const hasUser = value.length;
+      if (hasUser) {
         this.$router.replace('/home');
       }
     },
-    error(value) {
-      if (value) {
-        alert('Houve um erro ao tentar logar, verifique o usuário e senha, e a conexão com a internet');
+    error(hasError) {
+      if (hasError) {
+        this.$store.dispatch('DISPATCH_SNACKBAR_INFO', {
+          text: 'Houve um erro ao tentar logar, verifique o usuário e senha, e a conexão com a internet',
+          isVisible: true,
+          color: this.$vuetify.theme.themes.light.error,
+        });
       }
     },
   },
@@ -119,7 +124,11 @@ export default {
     },
     handleSignInSignUp() {
       if (!this.isSignInSignUpDisabled) {
-        return alert('Os campos não foram preenchidos corretamente');
+        return this.$store.dispatch('DISPATCH_SNACKBAR_INFO', {
+          text: 'Os campos não foram preenchidos corretamente',
+          isVisible: true,
+          color: this.$vuetify.theme.themes.light.error,
+        });
       }
       return this.isSignIn ? this.signIn() : this.signUp();
     },
@@ -132,8 +141,16 @@ export default {
     async signUp() {
       const stored = await storeUser(this.credential, this.password);
       return stored
-        ? alert('Usuário cadastrado com sucesso!')
-        : alert('Ocorreu um erro inesperado');
+        ? this.$store.dispatch('DISPATCH_SNACKBAR_INFO', {
+          text: 'Usuário cadastrado com sucesso!',
+          isVisible: true,
+          color: this.$vuetify.theme.themes.light.tertiary,
+        })
+        : this.$store.dispatch('DISPATCH_SNACKBAR_INFO', {
+          text: 'Ocorreu um erro inesperado',
+          isVisible: true,
+          color: this.$vuetify.theme.themes.light.error,
+        });
     },
   },
 };
