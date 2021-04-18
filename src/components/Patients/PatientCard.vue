@@ -20,7 +20,14 @@
         <v-card-title class="pt-2 pb-3"> {{ patient.name }} </v-card-title>
 
         <v-card-subtitle class="pb-0">
-          {{ patient.surgery }}
+          {{ surgeryDescription }}
+        </v-card-subtitle>
+
+        <v-card-subtitle class="pb-0 pt-0">
+          Situação:
+          <span :class="paymentSituation === 'PAGO' ? 'paid' : 'unpaid'">
+            {{ paymentSituation }}
+          </span>
         </v-card-subtitle>
 
         <v-card-subtitle class="pt-0 pb-0">
@@ -65,6 +72,14 @@ export default {
       defaultClass += this.patient.gender === 'male' ? ' male' : ' female';
       return defaultClass;
     },
+    surgeryDescription() {
+      return `${this.patient.surgery.slice(0, 20)}...`;
+    },
+    paymentSituation() {
+      return this.patient.paid
+        ? 'PAGO'
+        : 'NÃO PAGO';
+    },
   },
   methods: {
     getIcon(gender) {
@@ -104,6 +119,12 @@ export default {
     }
     .v-card__subtitle {
       font-size: 0.7rem;
+    }
+    .paid {
+      color: green;
+    }
+    .unpaid {
+      color: red;
     }
   }
 }

@@ -20,13 +20,13 @@ export default {
       hasData: true,
       patients: [
         {
-          name: 'Joao Pedro', id: 1, surgery: 'Bariatrica', date: '12/05/2020', gender: 'male',
+          name: 'Joao Pedro', id: 1, surgery: 'Bariatrica', date: '12/05/2020', gender: 'male', paid: false,
         },
         {
-          name: 'Dilson Canto', id: 2, surgery: 'Pneumotorax', date: '12/08/2020', gender: 'male',
+          name: 'Dilson Canto', id: 2, surgery: 'PNEUMOTORAX ABERTO com a equipe da sol, no hospital norte cor', date: '12/08/2020', gender: 'male', paid: true,
         },
         {
-          name: 'Solange Canto', id: 3, surgery: 'Valvuloplastia', date: '12/02/2021', gender: 'female',
+          name: 'Solange Canto', id: 3, surgery: 'Valvuloplastia', date: '12/02/2021', gender: 'female', paid: false,
         },
       ],
     };
