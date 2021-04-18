@@ -1,18 +1,23 @@
 <template>
   <v-main>
     <Presentation v-if="!hasData"/>
-    <PatientCard v-else v-for="patient in patients" :key="patient.id" :patient="patient"/>
+    <template v-else>
+      <FilterPatients />
+      <PatientCard v-for="patient in patients" :key="patient.id" :patient="patient"/>
+    </template>
   </v-main>
 </template>
 
 <script>
 import Presentation from '@/components/Presentation.vue';
 import PatientCard from '@/components/Patients/PatientCard.vue';
+import FilterPatients from '../components/Patients/FilterPatients.vue';
 
 export default {
   name: 'Home',
   components: {
     Presentation,
+    FilterPatients,
     PatientCard,
   },
   data() {
