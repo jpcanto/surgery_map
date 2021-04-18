@@ -2,19 +2,19 @@
   <div>
     <v-btn-toggle group v-model="btnToggle" class="mt-8">
       <div class="btn-box">
-        <v-btn icon x-large elevation="5" class="mb-0 mt-0">
+        <v-btn icon x-large elevation="2" class="mb-0 mt-0">
           <v-icon size="28">{{ creditCardIcon }}</v-icon>
         </v-btn>
         <span class="title">data</span>
       </div>
       <div class="btn-box">
-        <v-btn icon x-large elevation="5" class="mb-0 mt-0">
+        <v-btn icon x-large elevation="2" class="mb-0 mt-0">
           <v-icon size="28">{{ paymentIcon }}</v-icon>
         </v-btn>
         <span class="title">não pago</span>
       </div>
       <div class="btn-box">
-        <v-btn icon x-large elevation="5" class="mb-0 mt-0">
+        <v-btn icon x-large elevation="2" class="mb-0 mt-0">
           <v-icon size="28"> {{ alphabetIcon }} </v-icon>
         </v-btn>
         <span class="title">nome</span>
@@ -61,7 +61,8 @@ export default {
   flex-direction: column;
 
   .v-btn {
-  border-radius: 15px !important;
+  border-radius: 50% !important;
+  background-color: #fff;
     &.v-btn--active {
       background-color: $secondary !important;
       color: $primary !important;

@@ -1,20 +1,21 @@
 <template>
-<v-card class="mt-12 mx-auto text-center hidden-sm-only" min-width="320">
+<v-card class="main mt-6 mx-auto text-center hidden-sm-only" elevation="0" min-width="320">
   <v-card-text>
-    <v-card class="v-card--offset mx-auto" color="secondary" elevation="4">
+    <v-card class="v-card--offset mx-auto" color="secondary" elevation="0">
       <v-card-text class="headline white--text">{{ pageTitle }}</v-card-text>
       <v-card-text>
         <v-icon size="96" color="primary">mdi-account</v-icon>
       </v-card-text>
     </v-card>
     </v-card-text>
-      <v-form class="mt-12" v-model="validForm">
+      <v-form class="mt-6" v-model="validForm">
         <v-card-text>
           <v-text-field
             :label="credentialLabel"
             v-model="credential"
             color="secondary"
             name="userCredential"
+            solo
             type="text">
           </v-text-field>
           <v-text-field
@@ -24,6 +25,7 @@
             color="secondary"
             :rules="[usernameRules.required, usernameRules.minLength]"
             name="username"
+            solo
             type="text">
           </v-text-field>
             <v-text-field
@@ -31,20 +33,20 @@
             v-model="password"
             color="secondary"
             name="password"
+            solo
             :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
             :rules="[passwordRules.required, passwordRules.minLenght]"
             :type="isPasswordVisible"
             @click:append="togglePasswordShow">
           </v-text-field>
-          <v-label class="caption grey--text left">*Campos obrigatórios</v-label>
         </v-card-text>
-        <v-card-actions class="mt-12">
+        <v-card-actions>
           <v-row align="center" no-gutters>
             <v-col class="text-center">
                 <v-btn color="secondary" class="mb-4" block @click="handleSignInSignUp">
                   {{ loginButtonLabel }}
                 </v-btn>
-                <v-btn color="secondary" x-small text @click="handleType">
+                <v-btn color="#fff" small text @click="handleType">
                   {{ typeButtonLabel }}
                 </v-btn>
             </v-col>
@@ -144,7 +146,7 @@ export default {
         ? this.$store.dispatch('DISPATCH_SNACKBAR_INFO', {
           text: 'Usuário cadastrado com sucesso!',
           isVisible: true,
-          color: this.$vuetify.theme.themes.light.tertiary,
+          color: this.$vuetify.theme.themes.light.secondary,
         })
         : this.$store.dispatch('DISPATCH_SNACKBAR_INFO', {
           text: 'Ocorreu um erro inesperado',
@@ -156,6 +158,8 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped lang="scss">
+  .v-card.main {
+    background-color: transparent !important;
+  }
 </style>

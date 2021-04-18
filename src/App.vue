@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-main :class="mainBackgroundColor">
+    <v-main :class="mainBackground">
       <!-- <Navbar /> -->
       <router-view></router-view>
       <Snackbar />
@@ -19,11 +19,11 @@ export default {
     Snackbar,
   },
   computed: {
-    mainBackgroundColor() {
+    mainBackground() {
       const route = this.$route.name;
       switch (route) {
         case 'login':
-          return 'secondary';
+          return 'main-login';
         default:
           return 'primary';
       }
@@ -31,3 +31,10 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="scss">
+  .main-login {
+    background-image: url('./assets/login-background.jpg');
+    background-size: cover;
+  }
+</style>
