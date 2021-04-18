@@ -78,8 +78,8 @@ export default {
   }),
   computed: {
     ...mapState({
-      user: (state) => state.patient.patients,
-      error: (state) => state.patient.error,
+      user: (state) => state.user.info,
+      error: (state) => state.user.error,
     }),
     isSignInSignUpDisabled() {
       if (this.validForm) { return true; }
