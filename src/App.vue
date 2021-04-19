@@ -43,7 +43,10 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch('DISPATCH_USER_NAME', firebase.auth().currentUser.email);
+    const authUser = firebase.auth().currentUser;
+    if (authUser) {
+      this.$store.dispatch('DISPATCH_USER_NAME', authUser.email);
+    }
   },
 };
 </script>
