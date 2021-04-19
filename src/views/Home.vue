@@ -60,8 +60,4 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .v-main {
-    height: 100%;
-    overflow-x: auto;
-  }
 </style>

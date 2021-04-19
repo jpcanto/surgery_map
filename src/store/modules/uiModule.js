@@ -8,6 +8,7 @@ const defaultSnackbarInfo = {
 export default {
   state: {
     snackbar: defaultSnackbarInfo,
+    isUserDrawerVisible: false,
   },
   actions: {
     DISPATCH_SNACKBAR_INFO: async ({ commit }, payload) => {
@@ -15,6 +16,9 @@ export default {
     },
     DISPATCH_SNACKBAR_VISIBILITY: async ({ commit }, payload) => {
       commit('SET_SNACKBAR_VISIBILITY', payload);
+    },
+    DISPATCH_USER_DRAWER_VISIBILITY: ({ commit }, payload) => {
+      commit('SET_USER_DRAWER_VISIBILITY', payload);
     },
   },
   mutations: {
@@ -24,6 +28,9 @@ export default {
     },
     SET_SNACKBAR_VISIBILITY: (state, payload) => {
       state.snackbar.isVisible = payload;
+    },
+    SET_USER_DRAWER_VISIBILITY: (state, payload) => {
+      state.isUserDrawerVisible = payload;
     },
   },
 };

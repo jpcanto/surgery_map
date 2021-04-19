@@ -1,32 +1,44 @@
 <template>
   <v-app>
     <v-main :class="mainBackground">
-      <!-- <Navbar /> -->
+      <template v-if="showHeader">
+        <Header />
+      </template>
       <router-view></router-view>
+      <UserDrawer/>
       <Snackbar />
     </v-main>
   </v-app>
 </template>
 
 <script>
-// import Navbar from './components/Navbar.vue';
+import UserDrawer from '@/components/Users/UserDrawer.vue';
+import { mapState } from 'vuex';
+import Header from './components/Header.vue';
 import Snackbar from './components/Snackbar.vue';
 
 export default {
   name: 'App',
   components: {
-    // Navbar,
+    Header,
     Snackbar,
+    UserDrawer,
   },
   computed: {
+    ...mapState({
+      isDrawerVisible: (state) => state.ui.isUserDrawerVisible,
+    }),
     mainBackground() {
       const route = this.$route.name;
       switch (route) {
-        case 'login':
+        case 'Login':
           return 'main-login';
         default:
           return 'primary';
       }
+    },
+    showHeader() {
+      return this.$route.name !== 'Login';
     },
   },
 };
