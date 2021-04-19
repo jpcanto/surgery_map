@@ -1,6 +1,8 @@
 <template>
-  <v-card class="mx-auto" elevation="0">
-    <v-img height="250" contain :src="getIcon"></v-img>
+  <v-card elevation="0" tile>
+    <div class="image-box pt-5 pb-5 mb-12">
+      <v-img height="250" contain :src="getIcon"></v-img>
+    </div>
 
     <v-card-title class="ml-5">Paciente: João Pedro</v-card-title>
 
@@ -63,7 +65,18 @@ export default {
 <style scoped lang="scss">
 .v-card__actions {
   background-color: $primary;
-  height: 120px;
   flex-wrap: wrap;
+  height: 120px;
+}
+.image-box {
+  background-color: $secondary;
+  .v-image {
+    background-color: $primary;
+    border-radius: 15px;
+    bottom: -50px;
+    height: 250px;
+    margin: auto;
+    width: 80%;
+  }
 }
 </style>

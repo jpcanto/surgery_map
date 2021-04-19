@@ -1,5 +1,5 @@
 <template>
-  <v-main>
+  <v-main class="mt-8">
     <Presentation v-if="loading" />
     <template v-else>
       <SearchPatient />

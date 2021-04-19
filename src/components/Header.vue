@@ -1,6 +1,6 @@
 <template>
   <v-main>
-    <v-card class="mx-auto mb-8" elevation="0" color="secondary">
+    <v-card class="mx-auto" tile elevation="0" color="secondary">
       <div class="d-flex align-center justify-space-between">
         <v-btn v-if="isBackButtonVisible" @click="goBack" icon>
           <v-icon color="#fff">mdi-arrow-left</v-icon>
@@ -52,5 +52,5 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
 </style>
