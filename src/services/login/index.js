@@ -1,9 +1,15 @@
 import firebase from 'firebase';
 
-export default async (credential, password) => {
+export default (credential, password, userName) => {
   try {
-    await firebase.auth().createUserWithEmailAndPassword(credential, password);
-    return true;
+    return new Promise((resolve) => {
+      firebase.auth()
+        .createUserWithEmailAndPassword(credential, password).then((data) => {
+          data.user.updateProfile({
+            displayName: userName,
+          }).then(resolve(true));
+        });
+    });
   } catch (error) {
     return false;
   }

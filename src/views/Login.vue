@@ -4,18 +4,19 @@
     <v-card class="v-card--offset mx-auto" color="secondary" elevation="0">
       <v-card-text class="headline white--text">{{ pageTitle }}</v-card-text>
       <v-card-text>
-        <v-icon size="96" color="primary">mdi-account</v-icon>
+        <v-img :src="userIcon" height="98" contain></v-img>
       </v-card-text>
     </v-card>
     </v-card-text>
       <v-form class="mt-6" v-model="validForm">
         <v-card-text>
           <v-text-field
-            :label="credentialLabel"
+            label="Email *"
             v-model="credential"
             color="secondary"
             name="userCredential"
             solo
+            :rules="[emailRules.required]"
             type="text">
           </v-text-field>
           <v-text-field
@@ -58,17 +59,22 @@
 
 <script>
 import storeUser from '@/services/login';
+import userImage from '@/assets/user.png';
 import { mapState } from 'vuex';
 
 export default {
   name: 'login',
   data: () => ({
+    userIcon: userImage,
     validForm: false,
     isSignIn: true,
     showPassword: false,
     credential: '',
     userName: '',
     password: '',
+    emailRules: {
+      required: (value) => !!value || 'Obrigatório',
+    },
     usernameRules: {
       required: (value) => !!value || 'Obrigatório',
       minLength: (value) => (value && value.length >= 5) || 'Mínimo de 5 caracteres',
@@ -98,9 +104,6 @@ export default {
     },
     loginButtonLabel() {
       return this.isSignIn ? 'LOGAR' : 'CRIAR';
-    },
-    credentialLabel() {
-      return this.isSignIn ? 'Email ou User name*' : 'Email *';
     },
   },
   watch: {
@@ -141,7 +144,7 @@ export default {
       this.$store.dispatch('DISPATCH_USER', { name: this.credential, pass: this.password });
     },
     async signUp() {
-      const stored = await storeUser(this.credential, this.password);
+      const stored = await storeUser(this.credential, this.password, this.userName);
       return stored
         ? this.$store.dispatch('DISPATCH_SNACKBAR_INFO', {
           text: 'Usuário cadastrado com sucesso!',
