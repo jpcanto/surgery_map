@@ -36,12 +36,12 @@
     <DatePicker
       classes="ml-4 mr-4"
       label="Data da cirurgia"
-      initialValue="22-02-2021"
+      initialValue="2021-02-22"
     />
     <DatePicker
       classes="ml-4 mr-4"
       label="Data de recebimento"
-      initialValue="28-05-2021"
+      initialValue="2021-05-28"
     />
 
     <v-textarea
