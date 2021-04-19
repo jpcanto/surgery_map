@@ -9,32 +9,49 @@
     <v-card-subtitle class="ml-5">Informações do paciente:</v-card-subtitle>
 
     <v-text-field
-      label="João Pedro"
+      label="Nome do paciente"
+      value="João Pedro"
       append-icon="mdi-account"
-      solo
+      outlined
+      color="secondary"
       class="ml-4 mr-4"
     ></v-text-field>
 
     <v-text-field
-      label="Não pago"
-      append-icon="mdi-credit-card"
-      solo
+      label="Hospital"
+      value="Norte cor"
+      :append-icon="hospitalIcon"
+      outlined
+      color="secondary"
       class="ml-4 mr-4"
     ></v-text-field>
 
-    <v-text-field
-      label="12/12/2012"
-      append-icon="mdi-calendar"
-      solo
-      class="ml-4 mr-4"
-    ></v-text-field>
+    <v-switch
+      class="ml-4 mt-0"
+      color="secondary"
+      v-model="paid"
+      :label="paidLabel"
+    ></v-switch>
 
-    <v-text-field
-      label="22/12/2021"
-      append-icon="mdi-cash"
-      solo
+    <DatePicker
+      classes="ml-4 mr-4"
+      label="Data da cirurgia"
+      initialValue="22-02-2021"
+    />
+    <DatePicker
+      classes="ml-4 mr-4"
+      label="Data de recebimento"
+      initialValue="28-05-2021"
+    />
+
+    <v-textarea
+      outlined
+      color="secondary"
+      name="obs"
+      label="Observações"
       class="ml-4 mr-4"
-    ></v-text-field>
+      value="Cirúrgia bariátrica, realizada no hospital norte cor. Com a equipe da sol."
+    ></v-textarea>
 
     <v-card-actions class="d-flex justify-space-around align-center">
       <v-btn large color="error"> Cancelar edição </v-btn>
@@ -46,17 +63,28 @@
 <script>
 import maleIcon from '@/assets/male.png';
 import femaleIcon from '@/assets/female.png';
+import { mdiHospitalBox } from '@mdi/js';
+import DatePicker from '@/components/DatePicker.vue';
 
 export default {
   name: 'Patient',
+  components: {
+    DatePicker,
+  },
   data() {
     return {
       gender: 'male',
+      paid: false,
+      showDatePicker: false,
+      hospitalIcon: mdiHospitalBox,
     };
   },
   computed: {
     getIcon() {
       return this.gender === 'male' ? maleIcon : femaleIcon;
+    },
+    paidLabel() {
+      return this.paid ? 'Pago' : 'Não pago';
     },
   },
 };
