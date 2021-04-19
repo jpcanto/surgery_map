@@ -9,7 +9,7 @@
           <v-list-item-title class="white--text">Editar usuário</v-list-item-title>
         </v-list-item>
 
-        <v-list-item>
+        <v-list-item @click="logout">
           <v-list-item-icon>
             <v-icon color="#fff">{{ logoutIcon }}</v-icon>
           </v-list-item-icon>
@@ -23,6 +23,7 @@
 <script>
 import { mapState } from 'vuex';
 import { mdiLogout } from '@mdi/js';
+import firebase from 'firebase';
 
 export default {
   name: 'UserDrawer',
@@ -43,6 +44,13 @@ export default {
       set(value) {
         this.$store.dispatch('DISPATCH_USER_DRAWER_VISIBILITY', value);
       },
+    },
+  },
+  methods: {
+    logout() {
+      firebase.auth().signOut().then(() => {
+        this.$router.replace('login');
+      });
     },
   },
 };

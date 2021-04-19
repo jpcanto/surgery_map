@@ -19,6 +19,9 @@ export default {
         },
       );
     },
+    DISPATCH_USER_NAME: ({ commit }, payload) => {
+      commit('SET_USER', { name: payload });
+    },
   },
   mutations: {
     SET_USER: (state, payload) => {

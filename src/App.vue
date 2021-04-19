@@ -14,6 +14,7 @@
 <script>
 import UserDrawer from '@/components/Users/UserDrawer.vue';
 import { mapState } from 'vuex';
+import firebase from 'firebase';
 import Header from './components/Header.vue';
 import Snackbar from './components/Snackbar.vue';
 
@@ -40,6 +41,9 @@ export default {
     showHeader() {
       return this.$route.name !== 'Login';
     },
+  },
+  created() {
+    this.$store.dispatch('DISPATCH_USER_NAME', firebase.auth().currentUser.email);
   },
 };
 </script>
