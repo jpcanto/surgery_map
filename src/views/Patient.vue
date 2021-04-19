@@ -6,13 +6,13 @@
       :src="getIcon"
     ></v-img>
 
-    <v-card-title color="#fff">Paciente: João Pedro</v-card-title>
+    <v-card-title>Paciente: João Pedro</v-card-title>
 
     <v-card-title>Informações do paciente</v-card-title>
 
-    <v-card-actions class="d-flex justify-space-between">
-      <v-btn color="error"> Cancelar edição </v-btn>
-      <v-btn color="secondary"> Confirmar edição </v-btn>
+    <v-card-actions class="d-flex justify-space-around align-center">
+      <v-btn large color="error"> Cancelar edição </v-btn>
+      <v-btn large color="secondary"> Confirmar edição </v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -36,5 +36,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
+
+.v-card__actions {
+  background-color: $primary;
+  height: 120px;
+  flex-wrap: wrap;
+}
+
 </style>

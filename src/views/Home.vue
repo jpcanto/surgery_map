@@ -30,9 +30,9 @@
 <script>
 import Presentation from '@/components/Presentation.vue';
 import Feedback from '@/components/Feedback.vue';
-import PatientCard from '@/components/Patients/PatientCard.vue';
-import FilterPatients from '@/components/Patients/FilterPatients.vue';
-import SearchPatient from '@/components/Patients/SearchPatient.vue';
+import PatientCard from '@/components/Home/PatientCard.vue';
+import FilterPatients from '@/components/Home/FilterPatients.vue';
+import SearchPatient from '@/components/Home/SearchPatient.vue';
 import { mapGetters, mapState } from 'vuex';
 
 export default {

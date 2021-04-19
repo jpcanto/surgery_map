@@ -81,13 +81,13 @@ export default {
         ? 'PAGO'
         : 'NÃO PAGO';
     },
-    getIcon(gender) {
-      return gender === 'male' ? maleIcon : femaleIcon;
-    },
   },
   methods: {
     handleButtonsVisibility() {
       this.activeButtons = !this.activeButtons;
+    },
+    getIcon(gender) {
+      return gender === 'male' ? maleIcon : femaleIcon;
     },
   },
 };
