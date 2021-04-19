@@ -1,22 +1,27 @@
 <template>
   <v-main>
-    <Presentation v-if="loading"/>
+    <Presentation v-if="loading" />
     <template v-else>
       <SearchPatient />
       <FilterPatients />
       <template v-if="patients.length && !loading">
         <p class="number-label mt-4 text-center">{{ patientsNumberLabel }}</p>
-        <PatientCard v-for="patient in patients" :key="patient.id" :patient="patient"/>
+        <PatientCard
+          v-for="patient in patients"
+          :key="patient.id"
+          :patient="patient"
+          :clickAction="goToPatient"
+        />
       </template>
       <template v-else>
-      <Feedback
-        feedbackTitle="Houston, we have a problem!"
-        feedbackDescription="Desculpe, Não foi possível carregar os pacientes,
+        <Feedback
+          feedbackTitle="Houston, we have a problem!"
+          feedbackDescription="Desculpe, Não foi possível carregar os pacientes,
         tente limpar os filtros, ou recarregar a página"
-        feedbackActionTitle="Recarregar"
-        :actionColor="this.$vuetify.theme.themes.light.secondary"
-        :feedbackAction="reload"
-      />
+          feedbackActionTitle="Recarregar"
+          :actionColor="this.$vuetify.theme.themes.light.secondary"
+          :feedbackAction="reload"
+        />
       </template>
     </template>
   </v-main>
@@ -60,6 +65,9 @@ export default {
   methods: {
     reload() {
       this.$router.go('/home');
+    },
+    goToPatient() {
+      this.$router.replace('/patient/12');
     },
   },
 };

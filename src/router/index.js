@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import firebase from 'firebase';
-import Home from '../views/Home.vue';
-import Login from '../views/Login.vue';
+import Patient from '@/views/Patient.vue';
+import Home from '@/views/Home.vue';
+import Login from '@/views/Login.vue';
 
 Vue.use(VueRouter);
 
@@ -24,6 +25,14 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home,
+    meta: {
+      authRequired: true,
+    },
+  },
+  {
+    path: '/patient/:id',
+    name: 'Patient',
+    component: Patient,
     meta: {
       authRequired: true,
     },

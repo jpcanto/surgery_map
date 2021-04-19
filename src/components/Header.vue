@@ -2,6 +2,9 @@
   <v-main>
     <v-card class="mx-auto mb-8" elevation="0" color="secondary">
       <div class="d-flex align-center justify-space-between">
+        <v-btn v-if="isBackButtonVisible" @click="goBack" icon>
+          <v-icon color="#fff">mdi-arrow-left</v-icon>
+        </v-btn>
         <v-card-title class="white--text">DR. {{ userName }}</v-card-title>
         <v-btn
           rounded
@@ -34,10 +37,16 @@ export default {
       userName: (state) => state.user.info.name,
       drawerVisibleState: (state) => state.ui.isUserDrawerVisible,
     }),
+    isBackButtonVisible() {
+      return this.$route.name === 'Patient';
+    },
   },
   methods: {
     handleUserDrawer() {
       this.$store.dispatch('DISPATCH_USER_DRAWER_VISIBILITY', !this.drawerVisibleState);
+    },
+    goBack() {
+      this.$router.replace('/home');
     },
   },
 };

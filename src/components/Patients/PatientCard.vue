@@ -13,6 +13,7 @@
       height="180"
       contain
       :class="genderClass"
+      @click="clickAction"
     ></v-img>
 
     <div class="info-box elevation-4 d-flex flex-column justify-space-between">
@@ -60,7 +61,7 @@ import femaleIcon from '@/assets/female.png';
 
 export default {
   name: 'PatientCard',
-  props: ['patient'],
+  props: ['patient', 'clickAction'],
   data() {
     return {
       activeButtons: false,
@@ -80,11 +81,11 @@ export default {
         ? 'PAGO'
         : 'NÃO PAGO';
     },
-  },
-  methods: {
     getIcon(gender) {
       return gender === 'male' ? maleIcon : femaleIcon;
     },
+  },
+  methods: {
     handleButtonsVisibility() {
       this.activeButtons = !this.activeButtons;
     },
