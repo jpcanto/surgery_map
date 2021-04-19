@@ -5,7 +5,7 @@
       <SearchPatient />
       <FilterPatients />
       <template v-if="patients.length && !loading">
-        <p class="number-label mt-4 text-center">{{ patientsNumberLabel }}</p>
+        <p class="number-label mt-4 pl-3 pr-3 text-center">{{ patientsNumberLabel }}</p>
         <PatientCard
           v-for="patient in patients"
           :key="patient.id"
