@@ -2,9 +2,11 @@
   <v-toolbar
       dense
       class="ml-6 mr-6"
+      elevation="1"
     >
       <v-text-field
         hide-details
+        label="Buscar por nome"
         prepend-icon="mdi-magnify"
         solo
         flat

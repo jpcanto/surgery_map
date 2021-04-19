@@ -5,6 +5,7 @@
       <SearchPatient />
       <FilterPatients />
       <template v-if="patients.length && !loading">
+        <p class="number-label mt-4 text-center">{{ patientsNumberLabel }}</p>
         <PatientCard v-for="patient in patients" :key="patient.id" :patient="patient"/>
       </template>
       <template v-else>
@@ -46,10 +47,15 @@ export default {
   computed: {
     ...mapGetters({
       patients: 'GET_FILTERED_PATIENTS',
+      patientsNumber: 'GET_PATIENTS_NUMBER',
+      patientsFilteredNumber: 'GET_PATIENTS_FILTERED_NUMBER',
     }),
     ...mapState({
       loading: (state) => state.patients.loading,
     }),
+    patientsNumberLabel() {
+      return `Você tem ${this.patientsNumber} pacientes cadastrados, e está vendo ${this.patientsFilteredNumber} pacientes`;
+    },
   },
   methods: {
     reload() {
@@ -60,4 +66,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.number-label {
+  color: $gray;
+
+  border-bottom: 2px solid #a9a9a930;
+  padding-bottom: 8px;
+}
 </style>

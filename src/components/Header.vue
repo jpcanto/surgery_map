@@ -2,7 +2,7 @@
   <v-main>
     <v-card class="mx-auto mb-8" elevation="0" color="secondary">
       <div class="d-flex align-center justify-space-between">
-        <v-card-title class="white--text">{{ userName }}</v-card-title>
+        <v-card-title class="white--text">DR. {{ userName }}</v-card-title>
         <v-btn
           rounded
           x-small

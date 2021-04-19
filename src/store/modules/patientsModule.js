@@ -31,7 +31,12 @@ export default {
   },
   getters: {
     GET_FILTERED_PATIENTS: (state) => (
-      filtering.filterByName([...state.filteredPatients], state.searchParam)),
+      filtering.filterByName([...state.filteredPatients], state.searchParam)
+    ),
+    GET_PATIENTS_NUMBER: (state) => state.patients.length,
+    GET_PATIENTS_FILTERED_NUMBER: (state) => (
+      filtering.filterByName([...state.filteredPatients], state.searchParam).length
+    ),
   },
   actions: {
     DISPATCH_PATIENT_FILTER_PARAM: ({ commit }, payload) => {
