@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer v-model="isVisible" absolute color="secondary">
     <v-list nav dense>
-      <v-list-item-group v-model="group" active-class="white">
+      <v-list-item-group v-model="group" active-class="white secondary">
         <v-list-item>
           <v-list-item-icon>
             <v-icon color="#fff">mdi-pencil</v-icon>
