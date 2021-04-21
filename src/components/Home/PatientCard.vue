@@ -130,11 +130,11 @@ export default {
       font-size: 0.7rem;
     }
     .paid {
-      color: green;
+      color: #419a41;
       font-weight: bolder;
     }
     .unpaid {
-      color: red;
+      color: #e46666;
       font-weight: bolder;
     }
   }

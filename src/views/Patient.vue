@@ -18,6 +18,42 @@
     ></v-text-field>
 
     <v-text-field
+      label="CPF"
+      value="444.444.444.-44"
+      append-icon="mdi-account-box"
+      outlined
+      color="secondary"
+      class="ml-4 mr-4"
+    ></v-text-field>
+
+    <v-text-field
+      label="Idade"
+      value="18"
+      append-icon="mdi-account-box"
+      outlined
+      color="secondary"
+      class="ml-4 mr-4"
+    ></v-text-field>
+
+    <v-text-field
+      label="Telefone"
+      value="(21) 98673-8406"
+      append-icon="mdi-cellphone"
+      outlined
+      color="secondary"
+      class="ml-4 mr-4"
+    ></v-text-field>
+
+    <v-text-field
+      label="Email"
+      value="joao.canto@gmail.com"
+      append-icon="mdi-email"
+      outlined
+      color="secondary"
+      class="ml-4 mr-4"
+    ></v-text-field>
+
+    <v-text-field
       label="Hospital"
       value="Norte cor"
       :append-icon="hospitalIcon"
