@@ -1,6 +1,6 @@
 <template>
   <v-card
-    class="ma-8 d-flex align-center justify-center"
+    class="ma-6 d-flex align-center justify-center"
     color="transparent"
     elevation="0"
     max-width="500"
@@ -100,6 +100,10 @@ export default {
   @media screen and(max-width: 350px) {
     margin-left: 0 !important;
     margin-right: 0 !important;
+
+    .info-box {
+      height: 180px !important;
+    }
   }
   ::v-deep .v-image {
     border-radius: 5px;
@@ -116,20 +120,22 @@ export default {
   .info-box {
     background-color: #fff;
     border-top-right-radius: 5px;
-    border-bottom-left-radius: 0;
-    height: 140px;
+    border-bottom-left-radius: 0 !important;
+    height: 160px;
 
     .v-card__title {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
     }
     .v-card__subtitle {
       font-size: 0.7rem;
     }
     .paid {
       color: green;
+      font-weight: bolder;
     }
     .unpaid {
       color: red;
+      font-weight: bolder;
     }
   }
 }
