@@ -128,7 +128,7 @@
 import maleIcon from '@/assets/male.png';
 import femaleIcon from '@/assets/female.png';
 import { mdiHospitalBox } from '@mdi/js';
-import { storePatient } from '@/services/patients';
+import { storePatient, updatePatient } from '@/services/patients';
 import DatePicker from '@/components/DatePicker.vue';
 import { mapState } from 'vuex';
 
@@ -163,7 +163,7 @@ export default {
       patientReadyToEdit: (state) => state.patients.patient,
     }),
     isNewUser() {
-      return this.$route.params.id === 1;
+      return this.$route.params.id === '1';
     },
     getIcon() {
       return this.gender === 'male' ? maleIcon : femaleIcon;
@@ -175,7 +175,7 @@ export default {
       return this.isNewUser ? 'Confirmar cadastro' : 'Confirmar edição';
     },
     paidLabel() {
-      return this.paid ? 'Pago' : 'Não pago';
+      return this.patient.paid ? 'Pago' : 'Não pago';
     },
     gender() {
       return this.patient.gender;
@@ -187,24 +187,14 @@ export default {
     }
   },
   methods: {
-    handleConfirmAction() {
-      storePatient(
-        this.patient.name,
-        this.patient.cpf,
-        this.patient.age,
-        this.patient.gender,
-        this.patient.phoneNumber,
-        this.patient.email,
-        this.patient.surgery,
-        this.patient.hospital,
-        this.patient.paid,
-        this.patient.procedureDate,
-        this.patient.payDate,
-        this.patient.obs,
-      );
+    async handleConfirmAction() {
+      const txt = this.isNewUser
+        ? await storePatient(this.patient)
+        : await updatePatient(this.patient);
+
       this.$router.replace('/patients-list');
       this.$store.dispatch('DISPATCH_SNACKBAR_INFO', {
-        text: this.isNewUser ? 'Paciente cadastrado com sucesso' : 'Paciente editado com sucesso',
+        text: txt,
         isVisible: true,
         color: this.$vuetify.theme.themes.light.secondary,
       });

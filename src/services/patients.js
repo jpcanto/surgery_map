@@ -2,21 +2,19 @@ import firebase from 'firebase';
 
 const db = firebase.firestore();
 
+export async function findPatient(id) {
+  const ref = db.collection(`patients/${id}`);
+  const snapshot = await ref.get();
+  console.log(snapshot);
+}
+
 export function storePatient(
-  name,
-  cpf,
-  age,
-  gender,
-  phoneNumber,
-  email,
-  surgery,
-  hospital,
-  paid,
-  procedureDate,
-  payDate,
-  obs,
+  {
+    name, cpf, age, gender, phoneNumber, email, surgery,
+    hospital, paid, procedureDate, payDate, obs,
+  },
 ) {
-  db.collection('patients')
+  return db.collection('patients')
     .add({
       name,
       cpf,
@@ -31,12 +29,34 @@ export function storePatient(
       payDate,
       obs,
     })
-    .then(() => {
-      console.log('Document successfully written!');
+    .then(() => 'Paciente cadastrado com sucesso')
+    .catch((error) => `Ocorreu um erro ao tentar cadastrar: ${error}`);
+}
+
+export function updatePatient(
+  {
+    name, cpf, age, gender, phoneNumber, email, surgery,
+    hospital, paid, procedureDate, payDate, obs, id,
+  },
+) {
+  return db.collection('patients')
+    .doc(id)
+    .set({
+      name,
+      cpf,
+      age,
+      gender,
+      phoneNumber,
+      email,
+      surgery,
+      hospital,
+      paid,
+      procedureDate,
+      payDate,
+      obs,
     })
-    .catch((error) => {
-      console.error('Error writing document: ', error);
-    });
+    .then(() => 'Paciente editado com sucesso')
+    .catch((error) => `Ocorreu um erro ao tentar editar: ${error}`);
 }
 
 export async function listPatients() {
