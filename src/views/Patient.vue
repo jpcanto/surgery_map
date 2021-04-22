@@ -188,6 +188,7 @@ export default {
   },
   methods: {
     async handleConfirmAction() {
+      console.log(this.patient);
       const txt = this.isNewUser
         ? await storePatient(this.patient)
         : await updatePatient(this.patient);

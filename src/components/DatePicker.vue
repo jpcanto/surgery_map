@@ -47,6 +47,20 @@ export default {
         this.$refs.picker.activePicker = 'YEAR';
       });
     },
+    date(value) {
+      switch (this.label) {
+        case 'Data da cirurgia':
+          this.$store.dispatch('DISPATCH_PATIENT_PROCEDURE_DATE', value);
+          break;
+
+        case 'Data de recebimento':
+          this.$store.dispatch('DISPATCH_PATIENT_PAY_DATE', value);
+          break;
+
+        default:
+          break;
+      }
+    },
   },
   methods: {
     save(date) {

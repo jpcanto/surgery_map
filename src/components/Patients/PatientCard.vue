@@ -32,7 +32,7 @@
         </v-card-subtitle>
 
         <v-card-subtitle class="pt-0 pb-0">
-          Data da cirurgia: {{ patient.date }}
+          Data da cirurgia: {{ patient.payDate }}
         </v-card-subtitle>
       </div>
 

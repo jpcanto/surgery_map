@@ -51,6 +51,8 @@ export default {
       commit('SET_PATIENTS_ERROR', false);
       commit('SET_PATIENTS', patients);
     },
+    DISPATCH_PATIENT_PROCEDURE_DATE: ({ commit }, payload) => commit('SET_PATIENT_PROCEDURE_DATE', payload),
+    DISPATCH_PATIENT_PAY_DATE: ({ commit }, payload) => commit('SET_PATIENT_PAY_DATE', payload),
     DISPATCH_PATIENT_FILTER_PARAM: ({ commit }, payload) => {
       commit('SET_PATIENTS_LOADING', true);
       commit('SET_PATIENTS_FILTER_PARAM', payload);
@@ -62,6 +64,12 @@ export default {
   mutations: {
     SET_PATIENTS: (state, payload) => {
       state.patients = payload;
+    },
+    SET_PATIENT_PROCEDURE_DATE: (state, payload) => {
+      state.patient.procedureDate = payload;
+    },
+    SET_PATIENT_PAY_DATE: (state, payload) => {
+      state.patient.payDate = payload;
     },
     SET_PATIENTS_ERROR: (state, payload) => {
       state.error = payload;
