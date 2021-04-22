@@ -4,7 +4,7 @@
       <v-img height="250" contain :src="getIcon"></v-img>
     </div>
 
-    <v-card-title class="ml-5">Paciente: João Pedro</v-card-title>
+    <v-card-title class="ml-5">Paciente: {{ patient.name }}</v-card-title>
 
     <v-card-subtitle class="ml-5">Informações do paciente:</v-card-subtitle>
 
@@ -37,6 +37,17 @@
       class="ml-4 mr-4"
     ></v-text-field>
 
+    <v-radio-group v-model="patient.gender">
+      <v-radio
+        color="secondary"
+        class="ml-4 mr-4 mb-4"
+        v-for="genderOption in genderOptions"
+        :key="genderOption.label"
+        :label="genderOption.label"
+        :value="genderOption.value"
+      ></v-radio>
+    </v-radio-group>
+
     <v-text-field
       label="Telefone"
       v-model="patient.phoneNumber"
@@ -51,6 +62,15 @@
       label="Email"
       v-model="patient.email"
       append-icon="mdi-email"
+      outlined
+      color="secondary"
+      class="ml-4 mr-4"
+    ></v-text-field>
+
+    <v-text-field
+      label="Procedimento"
+      v-model="patient.surgery"
+      append-icon="mdi-account-box"
       outlined
       color="secondary"
       class="ml-4 mr-4"
@@ -96,8 +116,10 @@
     ></v-textarea>
 
     <v-card-actions class="d-flex justify-space-around align-center">
-      <v-btn large color="error"> Cancelar edição </v-btn>
-      <v-btn large color="secondary"> Confirmar edição </v-btn>
+      <v-btn large color="error" @click="handleCancelAction"> {{ cancelActionLabel }} </v-btn>
+      <v-btn large color="secondary" @click="handleConfirmAction">
+        {{ confirmActionLabel }}
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -106,7 +128,9 @@
 import maleIcon from '@/assets/male.png';
 import femaleIcon from '@/assets/female.png';
 import { mdiHospitalBox } from '@mdi/js';
+import { storePatient } from '@/services/patients';
 import DatePicker from '@/components/DatePicker.vue';
+import { mapState } from 'vuex';
 
 export default {
   name: 'Patient',
@@ -115,29 +139,83 @@ export default {
   },
   data() {
     return {
-      gender: 'male',
+      genderOptions: [{ label: 'Masculino', value: 'male' }, { label: 'Feminino', value: 'female' }],
       showDatePicker: false,
       hospitalIcon: mdiHospitalBox,
       patient: {
-        name: 'João Pedro',
-        cpf: '44444444444',
-        age: '26',
-        phoneNumber: '21986738406',
-        email: 'joao.canto@gmail.com',
-        hospital: 'Norte cor',
+        name: '',
+        cpf: '',
+        age: '',
+        gender: '',
+        phoneNumber: '',
+        email: '',
+        surgery: '',
+        hospital: '',
         paid: false,
-        procedureDate: '2021-02-22',
-        payDate: '2021-05-22',
-        obs: 'Cirurgia bariátrica realizada no hospital norte cor com a eequipe da sol',
+        procedureDate: '',
+        payDate: '',
+        obs: '',
       },
     };
   },
   computed: {
+    ...mapState({
+      patientReadyToEdit: (state) => state.patients.patient,
+    }),
+    isNewUser() {
+      return this.$route.params.id === 1;
+    },
     getIcon() {
       return this.gender === 'male' ? maleIcon : femaleIcon;
     },
+    cancelActionLabel() {
+      return this.isNewUser ? 'Cancelar cadastro' : 'Cancelar edição';
+    },
+    confirmActionLabel() {
+      return this.isNewUser ? 'Confirmar cadastro' : 'Confirmar edição';
+    },
     paidLabel() {
       return this.paid ? 'Pago' : 'Não pago';
+    },
+    gender() {
+      return this.patient.gender;
+    },
+  },
+  created() {
+    if (!this.isNewUser) {
+      this.patient = this.patientReadyToEdit;
+    }
+  },
+  methods: {
+    handleConfirmAction() {
+      storePatient(
+        this.patient.name,
+        this.patient.cpf,
+        this.patient.age,
+        this.patient.gender,
+        this.patient.phoneNumber,
+        this.patient.email,
+        this.patient.surgery,
+        this.patient.hospital,
+        this.patient.paid,
+        this.patient.procedureDate,
+        this.patient.payDate,
+        this.patient.obs,
+      );
+      this.$router.replace('/patients-list');
+      this.$store.dispatch('DISPATCH_SNACKBAR_INFO', {
+        text: this.isNewUser ? 'Paciente cadastrado com sucesso' : 'Paciente editado com sucesso',
+        isVisible: true,
+        color: this.$vuetify.theme.themes.light.secondary,
+      });
+    },
+    handleCancelAction() {
+      this.$router.replace('/patients-list');
+      this.$store.dispatch('DISPATCH_SNACKBAR_INFO', {
+        text: 'Operação cancelada',
+        isVisible: true,
+        color: this.$vuetify.theme.themes.light.secondary,
+      });
     },
   },
 };

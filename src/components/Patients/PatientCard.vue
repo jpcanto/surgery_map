@@ -13,7 +13,7 @@
       height="180"
       contain
       :class="genderClass"
-      @click="clickAction"
+      @click="handleClick"
     ></v-img>
 
     <div class="info-box elevation-4 d-flex flex-column justify-space-between">
@@ -88,6 +88,10 @@ export default {
     },
     getIcon(gender) {
       return gender === 'male' ? maleIcon : femaleIcon;
+    },
+    handleClick() {
+      this.$store.dispatch('DISPATCH_PATIENT_READY_TO_EDIT', this.patient);
+      this.clickAction();
     },
   },
 };

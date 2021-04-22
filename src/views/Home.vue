@@ -43,11 +43,7 @@ export default {
       this.$router.replace('patients-list');
     },
     goToStore() {
-      this.$store.dispatch('DISPATCH_SNACKBAR_INFO', {
-        text: 'Está funcionalidade ainda não foi criada!!',
-        isVisible: true,
-        color: this.$vuetify.theme.themes.light.error,
-      });
+      this.$router.replace('patient/1');
     },
   },
 };

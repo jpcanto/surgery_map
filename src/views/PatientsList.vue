@@ -4,7 +4,7 @@
     <template v-else>
       <SearchPatient />
       <FilterPatients />
-      <template v-if="patients.length && !loading">
+      <template v-if="!patientsError && patients.length">
         <p class="number-label mt-4 pl-3 pr-3 text-center">{{ patientsNumberLabel }}</p>
         <PatientCard
           v-for="patient in patients"
@@ -57,6 +57,7 @@ export default {
     }),
     ...mapState({
       loading: (state) => state.patients.loading,
+      patientsError: (state) => state.patients.error,
     }),
     patientsNumberLabel() {
       return `Você tem ${this.patientsNumber} pacientes cadastrados, e está vendo ${this.patientsFilteredNumber} pacientes`;
@@ -67,8 +68,11 @@ export default {
       this.$router.go('/home');
     },
     goToPatient() {
-      this.$router.replace('/patient/12');
+      this.$router.replace('/patient/2');
     },
+  },
+  created() {
+    this.$store.dispatch('DISPATCH_PATIENTS_LIST');
   },
 };
 </script>
