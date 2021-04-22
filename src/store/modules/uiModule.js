@@ -11,10 +11,10 @@ export default {
     isUserDrawerVisible: false,
   },
   actions: {
-    DISPATCH_SNACKBAR_INFO: async ({ commit }, payload) => {
+    DISPATCH_SNACKBAR_INFO: ({ commit }, payload) => {
       commit('SET_SNACKBAR_INFO', payload);
     },
-    DISPATCH_SNACKBAR_VISIBILITY: async ({ commit }, payload) => {
+    DISPATCH_SNACKBAR_VISIBILITY: ({ commit }, payload) => {
       commit('SET_SNACKBAR_VISIBILITY', payload);
     },
     DISPATCH_USER_DRAWER_VISIBILITY: ({ commit }, payload) => {

@@ -110,7 +110,7 @@ export default {
     user(value) {
       const hasUser = value.name;
       if (hasUser) {
-        this.$router.replace('/home');
+        this.$router.replace('/patients-list');
       }
     },
     error(hasError) {

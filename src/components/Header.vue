@@ -38,7 +38,7 @@ export default {
       drawerVisibleState: (state) => state.ui.isUserDrawerVisible,
     }),
     isBackButtonVisible() {
-      return this.$route.name === 'Patient';
+      return this.$route.name !== 'Home';
     },
   },
   methods: {
@@ -46,6 +46,9 @@ export default {
       this.$store.dispatch('DISPATCH_USER_DRAWER_VISIBILITY', !this.drawerVisibleState);
     },
     goBack() {
+      if (this.$route.name === 'Patient') {
+        return this.$router.replace('/patients-list');
+      }
       this.$router.replace('/home');
     },
   },

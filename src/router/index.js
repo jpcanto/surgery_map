@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import firebase from 'firebase';
 import Patient from '@/views/Patient.vue';
 import Home from '@/views/Home.vue';
+import PatientsList from '@/views/PatientsList.vue';
 import Login from '@/views/Login.vue';
 
 Vue.use(VueRouter);
@@ -25,6 +26,14 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home,
+    meta: {
+      authRequired: true,
+    },
+  },
+  {
+    path: '/patients-list',
+    name: 'PatientsList',
+    component: PatientsList,
     meta: {
       authRequired: true,
     },

@@ -1,83 +1,54 @@
 <template>
-  <v-main class="mt-8">
-    <Presentation v-if="loading" />
-    <template v-else>
-      <SearchPatient />
-      <FilterPatients />
-      <template v-if="patients.length && !loading">
-        <p class="number-label mt-4 pl-3 pr-3 text-center">{{ patientsNumberLabel }}</p>
-        <PatientCard
-          v-for="patient in patients"
-          :key="patient.id"
-          :patient="patient"
-          :clickAction="goToPatient"
-        />
+  <v-main>
+      <template v-for="navIten in navigationItens">
+        <NavigationCard :clickAction="navIten.action" :icon="navIten.icon" :key="navIten.key">
+          <template v-slot>
+            <v-card-title v-text="navIten.text"></v-card-title>
+          </template>
+        </NavigationCard>
       </template>
-      <template v-else>
-        <Feedback
-          feedbackTitle="Houston, we have a problem!"
-          feedbackDescription="Desculpe, Não foi possível carregar os pacientes,
-        tente limpar os filtros, ou recarregar a página"
-          feedbackActionTitle="Recarregar"
-          :actionColor="this.$vuetify.theme.themes.light.secondary"
-          :feedbackAction="reload"
-        />
-      </template>
-    </template>
   </v-main>
 </template>
 
 <script>
-import Presentation from '@/components/Presentation.vue';
-import Feedback from '@/components/Feedback.vue';
-import PatientCard from '@/components/Home/PatientCard.vue';
-import FilterPatients from '@/components/Home/FilterPatients.vue';
-import SearchPatient from '@/components/Home/SearchPatient.vue';
-import { mapGetters, mapState } from 'vuex';
+import NavigationCard from '@/components/NavigationCard.vue';
+import createPatientIcon from '@/assets/create-patient.png';
+import viewPatientsIcon from '@/assets/view-patients.png';
 
 export default {
   name: 'Home',
   components: {
-    Presentation,
-    Feedback,
-    SearchPatient,
-    FilterPatients,
-    PatientCard,
+    NavigationCard,
   },
   data() {
     return {
-      hasData: true,
+      navigationItens: [
+        {
+          text: 'Ver pacientes',
+          action: this.goToList,
+          icon: viewPatientsIcon,
+          key: 1,
+        },
+        {
+          text: 'Cadastrar paciente',
+          action: this.goToStore,
+          icon: createPatientIcon,
+          key: 2,
+        },
+      ],
     };
   },
-  computed: {
-    ...mapGetters({
-      patients: 'GET_FILTERED_PATIENTS',
-      patientsNumber: 'GET_PATIENTS_NUMBER',
-      patientsFilteredNumber: 'GET_PATIENTS_FILTERED_NUMBER',
-    }),
-    ...mapState({
-      loading: (state) => state.patients.loading,
-    }),
-    patientsNumberLabel() {
-      return `Você tem ${this.patientsNumber} pacientes cadastrados, e está vendo ${this.patientsFilteredNumber} pacientes`;
-    },
-  },
   methods: {
-    reload() {
-      this.$router.go('/home');
+    goToList() {
+      this.$router.replace('patients-list');
     },
-    goToPatient() {
-      this.$router.replace('/patient/12');
+    goToStore() {
+      this.$store.dispatch('DISPATCH_SNACKBAR_INFO', {
+        text: 'Está funcionalidade ainda não foi criada!!',
+        isVisible: true,
+        color: this.$vuetify.theme.themes.light.error,
+      });
     },
   },
 };
 </script>
-
-<style scoped lang="scss">
-.number-label {
-  color: $gray;
-
-  border-bottom: 2px solid #a9a9a930;
-  padding-bottom: 8px;
-}
-</style>
