@@ -10,8 +10,8 @@
 
     <v-text-field
       label="Nome do paciente"
-      value="João Pedro"
       append-icon="mdi-account"
+      v-model="patient.name"
       outlined
       color="secondary"
       class="ml-4 mr-4"
@@ -19,7 +19,8 @@
 
     <v-text-field
       label="CPF"
-      value="444.444.444.-44"
+      v-model="patient.cpf"
+      v-mask="'###-###-###-##'"
       append-icon="mdi-account-box"
       outlined
       color="secondary"
@@ -28,7 +29,8 @@
 
     <v-text-field
       label="Idade"
-      value="18"
+      v-model="patient.age"
+      v-mask="'###'"
       append-icon="mdi-account-box"
       outlined
       color="secondary"
@@ -37,7 +39,8 @@
 
     <v-text-field
       label="Telefone"
-      value="(21) 98673-8406"
+      v-model="patient.phoneNumber"
+      v-mask="'(##) #####-####'"
       append-icon="mdi-cellphone"
       outlined
       color="secondary"
@@ -46,7 +49,7 @@
 
     <v-text-field
       label="Email"
-      value="joao.canto@gmail.com"
+      v-model="patient.email"
       append-icon="mdi-email"
       outlined
       color="secondary"
@@ -55,7 +58,7 @@
 
     <v-text-field
       label="Hospital"
-      value="Norte cor"
+      v-model="patient.hospital"
       :append-icon="hospitalIcon"
       outlined
       color="secondary"
@@ -65,19 +68,22 @@
     <v-switch
       class="ml-4 mt-0"
       color="secondary"
-      v-model="paid"
+      width="115"
+      v-model="patient.paid"
       :label="paidLabel"
     ></v-switch>
 
     <DatePicker
       classes="ml-4 mr-4"
+      v-model="patient.procedureDate"
       label="Data da cirurgia"
-      initialValue="2021-02-22"
+      :initialValue="patient.procedureDate"
     />
     <DatePicker
       classes="ml-4 mr-4"
+      v-model="patient.payDate"
       label="Data de recebimento"
-      initialValue="2021-05-28"
+      :initialValue="patient.payDate"
     />
 
     <v-textarea
@@ -86,7 +92,7 @@
       name="obs"
       label="Observações"
       class="ml-4 mr-4"
-      value="Cirúrgia bariátrica, realizada no hospital norte cor. Com a equipe da sol."
+      v-model="patient.obs"
     ></v-textarea>
 
     <v-card-actions class="d-flex justify-space-around align-center">
@@ -110,9 +116,20 @@ export default {
   data() {
     return {
       gender: 'male',
-      paid: false,
       showDatePicker: false,
       hospitalIcon: mdiHospitalBox,
+      patient: {
+        name: 'João Pedro',
+        cpf: '44444444444',
+        age: '26',
+        phoneNumber: '21986738406',
+        email: 'joao.canto@gmail.com',
+        hospital: 'Norte cor',
+        paid: false,
+        procedureDate: '2021-02-22',
+        payDate: '2021-05-22',
+        obs: 'Cirurgia bariátrica realizada no hospital norte cor com a eequipe da sol',
+      },
     };
   },
   computed: {

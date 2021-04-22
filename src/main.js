@@ -1,12 +1,14 @@
 import Vue from 'vue';
 import firebase from 'firebase';
 // import firebaseConfig from '@/config/firebase';
+import { VueMaskDirective } from 'v-mask';
 import App from './App.vue';
 import router from './router';
 import store from './store';
 import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false;
+Vue.directive('mask', VueMaskDirective);
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCAv40mGVV2edCI5QpfBPGWCVGuOH8RQnw',
