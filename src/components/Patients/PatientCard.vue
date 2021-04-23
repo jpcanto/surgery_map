@@ -97,6 +97,7 @@ export default {
     async editPayInfoUser() {
       const updatedPatientState = { ...this.patient, paid: !this.patient.paid };
       await updatePatient(updatedPatientState, this.$store.state.user.info.id);
+      this.$store.dispatch('DISPATCH_PATIENTS_LIST', this.$store.state.user.info.id);
     },
   },
 };
