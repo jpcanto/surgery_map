@@ -5,14 +5,12 @@
     max-width="400"
   >
     <v-img
-      height="200px"
-      src="@/assets/user.png"
+      height="250px"
+      src="@/assets/medical-team.png"
     >
     </v-img>
 
     <v-card-text class="white--text">
-      <div>Bem vindo {{ userName }}</div>
-
       <div>Estamos preparando tudo para você, por favor aguarde.</div>
     </v-card-text>
   </v-card>
@@ -24,20 +22,21 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 
 export default {
   name: 'Presentation',
-  computed: {
-    ...mapState({
-      userName: (state) => state.users.info.name,
-    }),
-  },
 };
 </script>
 
 <style scoped lang="scss">
-.v-card {
+.v-main {
+  background-color: $secondary;
+  bottom: 0;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  z-index: 9;
+  .v-card {
   background-color: transparent !important;
   box-shadow: none !important;
   margin-top: 20vh;
@@ -45,6 +44,7 @@ export default {
   .v-card__text {
     text-align: center;
   }
+}
 }
 ::v-deep .v-progress-circular {
   left: 45vw;

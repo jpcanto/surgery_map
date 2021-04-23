@@ -1,19 +1,20 @@
 <template>
   <v-main class="mt-8">
-    <Presentation v-if="loading" />
-    <template v-else>
+    <template>
       <SearchPatient />
       <FilterPatients />
-      <template v-if="!patientsError && patients.length">
-        <p class="number-label mt-4 pl-3 pr-3 text-center">{{ patientsNumberLabel }}</p>
+      <template v-if="!patientsError && patients.length && !loading">
+        <p class="number-label mt-4 pl-3 pr-3 text-center">
+          {{ patientsNumberLabel }}
+        </p>
         <PatientCard
           v-for="patient in patients"
-          :key="patient.id"
+          :key="patient.name"
           :patient="patient"
           :clickAction="goToPatient"
         />
       </template>
-      <template v-else>
+      <template v-if="patientsError && !patients.lenth && !loading">
         <Feedback
           feedbackTitle="Houston, we have a problem!"
           feedbackDescription="Desculpe, Não foi possível carregar os pacientes,
@@ -22,6 +23,9 @@
           :actionColor="this.$vuetify.theme.themes.light.secondary"
           :feedbackAction="reload"
         />
+      </template>
+      <template v-else-if="loading">
+        <Presentation />
       </template>
     </template>
   </v-main>
@@ -72,7 +76,10 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch('DISPATCH_PATIENTS_LIST', this.$store.state.user.info.id);
+    this.$store.dispatch(
+      'DISPATCH_PATIENTS_LIST',
+      this.$store.state.user.info.id,
+    );
   },
 };
 </script>
