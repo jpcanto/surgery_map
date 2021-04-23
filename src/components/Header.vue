@@ -24,6 +24,7 @@
 <script>
 import { mapState } from 'vuex';
 import userIcon from '@/assets/user.png';
+import { getLocalStorage } from '@/utils/localStorage';
 
 export default {
   name: 'Header',
@@ -46,10 +47,7 @@ export default {
       this.$store.dispatch('DISPATCH_USER_DRAWER_VISIBILITY', !this.drawerVisibleState);
     },
     goBack() {
-      if (this.$route.name === 'Patient') {
-        return this.$router.replace('/patients-list');
-      }
-      this.$router.replace('/home');
+      this.$router.replace(getLocalStorage('last-route'));
     },
   },
 };

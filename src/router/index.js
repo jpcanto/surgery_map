@@ -5,6 +5,7 @@ import Patient from '@/views/Patient.vue';
 import Home from '@/views/Home.vue';
 import PatientsList from '@/views/PatientsList.vue';
 import Login from '@/views/Login.vue';
+import { setLocalStorage } from '@/utils/localStorage';
 
 Vue.use(VueRouter);
 
@@ -57,6 +58,8 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   const { currentUser } = firebase.auth();
   const authRequired = to.matched.some((record) => record.meta.authRequired);
+
+  setLocalStorage('last-route', from.fullPath);
 
   if (authRequired && !currentUser) {
     next('login');
