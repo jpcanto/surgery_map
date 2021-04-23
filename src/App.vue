@@ -45,7 +45,7 @@ export default {
   created() {
     const authUser = firebase.auth().currentUser;
     if (authUser) {
-      this.$store.dispatch('DISPATCH_USER_NAME', authUser.displayName);
+      this.$store.dispatch('DISPATCH_USER_NAME', { name: authUser.displayName, id: authUser.uid });
     }
   },
 };

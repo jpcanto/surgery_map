@@ -188,10 +188,10 @@ export default {
   },
   methods: {
     async handleConfirmAction() {
-      console.log(this.patient);
+      console.log(this.$store);
       const txt = this.isNewUser
-        ? await storePatient(this.patient)
-        : await updatePatient(this.patient);
+        ? await storePatient(this.patient, this.$store.state.user.info.id)
+        : await updatePatient(this.patient, this.$store.state.user.info.id);
 
       this.$router.replace('/patients-list');
       this.$store.dispatch('DISPATCH_SNACKBAR_INFO', {

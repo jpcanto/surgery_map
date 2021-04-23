@@ -39,8 +39,8 @@ export default {
     },
   },
   actions: {
-    DISPATCH_PATIENTS_LIST: async ({ commit }) => {
-      const patients = await listPatients();
+    DISPATCH_PATIENTS_LIST: async ({ commit }, payload) => {
+      const patients = await listPatients(payload);
       commit('SET_PATIENTS_LOADING', true);
 
       if (!patients) {

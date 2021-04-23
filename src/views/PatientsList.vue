@@ -72,7 +72,7 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch('DISPATCH_PATIENTS_LIST');
+    this.$store.dispatch('DISPATCH_PATIENTS_LIST', this.$store.state.user.info.id);
   },
 };
 </script>

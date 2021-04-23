@@ -12,9 +12,11 @@ export function storePatient(
   {
     name, cpf, age, gender, phoneNumber, email, surgery,
     hospital, paid, procedureDate, payDate, obs,
-  },
+  }, userId,
 ) {
-  return db.collection('patients')
+  console.log(userId);
+  return db.collection('accounts')
+    .doc(userId).collection('patients')
     .add({
       name,
       cpf,
@@ -36,11 +38,12 @@ export function storePatient(
 export function updatePatient(
   {
     name, cpf, age, gender, phoneNumber, email, surgery,
-    hospital, paid, procedureDate, payDate, obs, id,
-  },
+    hospital, paid, procedureDate, payDate, obs, patientId,
+  }, userId,
 ) {
-  return db.collection('patients')
-    .doc(id)
+  return db.collection('accounts')
+    .doc(userId).collection('patients')
+    .doc(patientId)
     .set({
       name,
       cpf,
@@ -59,8 +62,8 @@ export function updatePatient(
     .catch((error) => `Ocorreu um erro ao tentar editar: ${error}`);
 }
 
-export async function listPatients() {
-  const ref = db.collection('patients');
+export async function listPatients(id) {
+  const ref = db.collection('accounts').doc(id).collection('patients');
   const snapshot = await ref.get();
   const patients = [];
   snapshot.forEach((patient) => {
