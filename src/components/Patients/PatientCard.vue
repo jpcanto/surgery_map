@@ -40,10 +40,10 @@
         <v-spacer></v-spacer>
 
         <v-btn-toggle v-show="activeButtons" group>
-          <v-btn icon small class="mb-0 mt-0">
+          <v-btn icon small class="mb-0 mt-0" @click="editPayInfoUser">
             <v-icon small>mdi-credit-card</v-icon>
           </v-btn>
-          <v-btn icon small class="mb-0 mt-0">
+          <v-btn icon small class="mb-0 mt-0" @click="handleClick">
             <v-icon small>mdi-pencil</v-icon>
           </v-btn>
         </v-btn-toggle>
@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import { updatePatient } from '@/services/patients';
 import maleIcon from '@/assets/male.png';
 import femaleIcon from '@/assets/female.png';
 
@@ -92,6 +93,10 @@ export default {
     handleClick() {
       this.$store.dispatch('DISPATCH_PATIENT_READY_TO_EDIT', this.patient);
       this.clickAction();
+    },
+    async editPayInfoUser() {
+      const updatedPatientState = { ...this.patient, paid: !this.patient.paid };
+      await updatePatient(updatedPatientState, this.$store.state.user.info.id);
     },
   },
 };
