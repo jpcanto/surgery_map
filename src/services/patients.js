@@ -14,7 +14,6 @@ export function storePatient(
     hospital, paid, procedureDate, payDate, obs,
   }, userId,
 ) {
-  console.log(userId);
   return db.collection('accounts')
     .doc(userId).collection('patients')
     .add({
@@ -38,12 +37,12 @@ export function storePatient(
 export function updatePatient(
   {
     name, cpf, age, gender, phoneNumber, email, surgery,
-    hospital, paid, procedureDate, payDate, obs, patientId,
+    hospital, paid, procedureDate, payDate, obs, id,
   }, userId,
 ) {
   return db.collection('accounts')
     .doc(userId).collection('patients')
-    .doc(patientId)
+    .doc(id)
     .set({
       name,
       cpf,

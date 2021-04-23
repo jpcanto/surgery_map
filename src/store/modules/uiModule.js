@@ -23,7 +23,6 @@ export default {
   },
   mutations: {
     SET_SNACKBAR_INFO: (state, payload) => {
-      console.log(payload);
       state.snackbar = { ...state.snackbar, ...payload };
     },
     SET_SNACKBAR_VISIBILITY: (state, payload) => {
