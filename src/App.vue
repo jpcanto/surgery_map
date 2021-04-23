@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-main :class="mainBackground">
+    <v-main class="primary">
       <template v-if="showHeader">
         <Header />
       </template>
@@ -29,15 +29,6 @@ export default {
     ...mapState({
       isDrawerVisible: (state) => state.ui.isUserDrawerVisible,
     }),
-    mainBackground() {
-      const route = this.$route.name;
-      switch (route) {
-        case 'Login':
-          return 'main-login';
-        default:
-          return 'primary';
-      }
-    },
     showHeader() {
       return this.$route.name !== 'Login';
     },
@@ -50,10 +41,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
-  .main-login {
-    background-image: url('./assets/login-background.jpg');
-    background-size: cover;
-  }
-</style>

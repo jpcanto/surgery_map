@@ -1,11 +1,11 @@
 <template>
   <v-card
-    class="main mt-6 mx-auto text-center hidden-sm-only"
+    class="main mx-auto text-center"
     elevation="0"
     min-width="320"
   >
-    <v-card-text>
-      <v-card class="v-card--offset mx-auto" color="secondary" elevation="0">
+    <v-card-text class="pa-0">
+      <v-card color="secondary" class="login-card" elevation="0">
         <v-card-text class="headline white--text">{{ pageTitle }}</v-card-text>
         <v-card-text>
           <v-img :src="userIcon" height="98" contain></v-img>
@@ -23,7 +23,7 @@
           v-model="credential"
           color="secondary"
           name="userCredential"
-          solo
+          outlined
           :rules="[emailRules.required]"
           type="text"
         >
@@ -35,7 +35,7 @@
           color="secondary"
           :rules="[usernameRules.required, usernameRules.minLength]"
           name="username"
-          solo
+          outlined
           type="text"
         >
         </v-text-field>
@@ -44,7 +44,7 @@
           v-model="password"
           color="secondary"
           name="password"
-          solo
+          outlined
           :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
           :rules="[passwordRules.required, passwordRules.minLenght]"
           :type="isPasswordVisible"
@@ -191,7 +191,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.v-card.main {
-  background-color: transparent !important;
-}
+  .login-card {
+    background: linear-gradient(to bottom, $secondaryDarkenOpacity, $secondary);
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+  }
 </style>
