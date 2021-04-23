@@ -64,7 +64,7 @@
             >
               {{ loginButtonLabel }}
             </v-btn>
-            <v-btn color="#fff" small text @click="handleType">
+            <v-btn color="secondaryDarken primary" block @click="handleType">
               {{ typeButtonLabel }}
             </v-btn>
           </v-col>
